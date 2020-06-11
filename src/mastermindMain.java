@@ -1,46 +1,38 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
+/*versie werkend, maar nog niet 'elegant'
+* idee methode voor het checken Mastermindcode.java van Aditya-Kharosekar - // https://github.com/Aditya-Kharosekar/Mastermind/blob/master/Game.java
+* to do:
+* 
+* nog eens spelen
+* verkeerde letters niet accepteren
+* geluidseffecten/overwinningsliedje
+* moeilijkheidsnivea (easy : unlimited (1000) beurten, hard: max 10 beurten)  
+*/
+
 public class mastermindMain {
-
-	public static void main(String[] args) {
-
-		// random code genereren
-		Mastermindcode code = new Mastermindcode();
-		code.CodeMaken();
-		System.out.println("Mastermindcode gegenereerd");
-		for (int i = 0; i < 4; i++) {
-			System.out.print(code.code[i]);
-		}
-
-		// invoer code
-		Scanner scan = new Scanner(System.in);
-		int beurt = 0;
+		
+	public static void main(String[] args) {		
+		System.out.println("Welkom bij Mastermind");
+				Scanner scan = new Scanner(System.in);
 		while (true) {
-			beurt++;
-			System.out.println("Geef code van vier letters in (letters a-f, zonder spaties)");
-			String input = scan.nextLine();
-			if (input.equals("x")) {
+			System.out.println("Start spel = s; Stoppen = x");
+			String menu = scan.nextLine();
+			if (menu.equals("x")) {
 				System.out.println("einde");
 				break;
-			} else if (input.length() < 4) {
-				System.out.println("teveel letters");
-			} else if (input.length() > 4) {
-				System.out.println("te weinig letters");
-			//} else if (!(input.matches("abcdef"))){
-			//	System.out.println("Verkeerde tekens");				
+			} else if (menu.contentEquals("s")) {				
+				mastermindSpel spelenmaar = new mastermindSpel();
+				spelenmaar.start();				
 			} else {
-				InvoerCode invoerCode = new InvoerCode();
-				invoerCode.InvoerCodeMaken(input);
-				code.checkenCode(code.code, invoerCode.invoer);
-				if (Arrays.equals(code.code, invoerCode.invoer)) {
-					System.out.println("Gewonnen in " + beurt + " beurten");
-					break;
-				} 
-			} 
+				continue;
+			}
 		}
+		
 	}
+	
 }
+
 /*
  * Programmeer het spel Mastermind tegen de computer, waarbij je gebruik maakt
  * van Object Oriented Programming. Hieronder staat het spelverloop uitgelegd.
