@@ -4,8 +4,7 @@ import java.util.Scanner;
 * idee methode voor het checken Mastermindcode.java van Aditya-Kharosekar - // https://github.com/Aditya-Kharosekar/Mastermind/blob/master/Game.java
 * to do:
 * 
-* nog eens spelen
-* verkeerde letters niet accepteren
+* nog eens spelen 
 * geluidseffecten/overwinningsliedje
 * moeilijkheidsnivea (easy : unlimited (1000) beurten, hard: max 10 beurten)  
 */
@@ -14,24 +13,27 @@ public class mastermindMain {
 		
 	public static void main(String[] args) {		
 		System.out.println("Welkom bij Mastermind");
-				Scanner scan = new Scanner(System.in);
+		Scanner scan = new Scanner(System.in);
+		
+		
 		while (true) {
 			System.out.println("Start spel = s; Stoppen = x");
 			String menu = scan.nextLine();
+			
 			if (menu.equals("x")) {
 				System.out.println("einde");
 				break;
-			} else if (menu.contentEquals("s")) {				
+			}
+			
+			if (menu.contentEquals("s")) {				
 				mastermindSpel spelenmaar = new mastermindSpel();
 				spelenmaar.start();				
-			} else {
-				continue;
+				System.out.println("Nog eens spelen? [s= start; x = stop]");			
 			}
 		}
-		
 	}
-	
-}
+}	
+
 
 /*
  * Programmeer het spel Mastermind tegen de computer, waarbij je gebruik maakt
