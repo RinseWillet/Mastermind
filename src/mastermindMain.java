@@ -1,38 +1,22 @@
-import java.util.Scanner;
-
 /*versie werkend, maar nog niet 'elegant'
 * idee methode voor het checken Mastermindcode.java van Aditya-Kharosekar - // https://github.com/Aditya-Kharosekar/Mastermind/blob/master/Game.java
 * to do:
 * 
-* nog eens spelen 
-* geluidseffecten/overwinningsliedje
+* 
+* uitbreiden geluidseffecten/overwinningsliedje 
 * moeilijkheidsnivea (easy : unlimited (1000) beurten, hard: max 10 beurten)  
 */
 
 public class mastermindMain {
 		
-	public static void main(String[] args) {		
-		System.out.println("Welkom bij Mastermind");
-		Scanner scan = new Scanner(System.in);
+	public static void main(String[] args) {
 		
+		mastermindSpel spelenmaar = new mastermindSpel();
+		spelenmaar.start();	
 		
-		while (true) {
-			System.out.println("Start spel = s; Stoppen = x");
-			String menu = scan.nextLine();
-			
-			if (menu.equals("x")) {
-				System.out.println("einde");
-				break;
-			}
-			
-			if (menu.contentEquals("s")) {				
-				mastermindSpel spelenmaar = new mastermindSpel();
-				spelenmaar.start();				
-				System.out.println("Nog eens spelen? [s= start; x = stop]");			
-			}
-		}
 	}
-}	
+}
+	
 
 
 /*

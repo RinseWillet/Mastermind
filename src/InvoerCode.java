@@ -42,6 +42,5 @@ public class InvoerCode {
 	        }
 	        return invoercodeInInts;
 	    }
-	
-}
+	}
 

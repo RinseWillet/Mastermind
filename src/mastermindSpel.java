@@ -1,10 +1,14 @@
 import java.util.Scanner;
-import java.util.Arrays;
 
 public class mastermindSpel {
 
 	void start() {
-
+		Scanner scan = new Scanner(System.in);
+		soundEffects sound = new soundEffects();
+		System.out.println("Welkom bij Mastermind");
+		boolean spelen = SpelenVraag();
+		
+					
 		// random code genereren
 		Mastermindcode code = new Mastermindcode();
 		code.CodeMaken();
@@ -13,19 +17,20 @@ public class mastermindSpel {
 		// invoer code
 
 		int beurt = 0;
-		
-		Scanner scan = new Scanner(System.in);
-		
-						
-		while (true) {
+										
+		while (spelen == true) {
 			beurt++;
-			System.out.println("Geef code van vier letters in (letters a-f, zonder spaties)");
+			System.out.println("Geef code van vier letters in (letters a-f, zonder spaties, x is einde)");
 			String input = scan.nextLine();
 			boolean contains = true;
 			contains = onlyLettersAF(input);												//checken verkeerde letters
 			if (input.equals("x")) {														//einde
-				System.out.println("einde");
-				break;
+				System.out.println("dit potje is voorbij - opnieuw spelen?");
+				spelen=SpelenVraag();
+				if (spelen==true) {
+					code.CodeMaken();					
+					System.out.println("Mastermindcode gegenereerd");
+				}				
 			} else if (input.length() < 4) {												// verkeerd aantal letters ingegeven
 				System.out.println("te weinig letters");
 			} else if (input.length() > 4) {
@@ -42,11 +47,16 @@ public class mastermindSpel {
 					System.out.println(">>>Je hebt gewonnen<<<");
 					System.out.println(">>>en dat in maar " + beurt + " beurten<<<");
 					System.out.println(">>>Tijd voor een biertje<<<");
-					break;
+					System.out.println("of nog eens spelen?");
+					sound.good();
+					spelen=SpelenVraag();
+					if (spelen==true) {
+						code.CodeMaken();					
+						System.out.println("Mastermindcode gegenereerd");
+					}
 				}
 			}
-		}
-				
+		}		
 		scan.close();
 	}
 
@@ -63,5 +73,33 @@ public class mastermindSpel {
 			}
 			return contains;
 			}
+	
+	boolean SpelenVraag () {
+		soundEffects sound = new soundEffects();
+		boolean spelen = true;
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Start spel = s; Stoppen = x");
+		String start = scan.nextLine();
+		while(true) {
+			if(start.equals("x")) {
+			System.out.println("einde");
+			sound.bad();
+			spelen = false;
+			return spelen;
+			}
+		if(start.equals("s") ) {
+			spelen = true;
+			return spelen;
+		}
+		scan.close();
+	}
+}
+	
+	void MastermindcodeMaken() {
+		Mastermindcode code = new Mastermindcode();
+		code.CodeMaken();
+		System.out.println("Mastermindcode gegenereerd");
+	}
+	
 }
 			
