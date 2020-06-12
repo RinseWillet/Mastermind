@@ -7,11 +7,11 @@ public class InvoerCode {
 	}
 
 	public int[] InvoerCodeMaken(String input) {
-		
-		char a1 = input.charAt(0);
-        char b1 = input.charAt(1);
-        char c1 = input.charAt(2);
-        char d1 = input.charAt(3);
+		String omzet = input.toLowerCase();
+		char a1 = omzet.charAt(0);
+        char b1 = omzet.charAt(1);
+        char c1 = omzet.charAt(2);
+        char d1 = omzet.charAt(3);
 		System.out.println("je voerde in: ");
 		System.out.println(">> " + a1 + " - " + b1 + " - " + c1 + " - " + d1 + " <<");
 		

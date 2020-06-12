@@ -20,12 +20,13 @@ public class mastermindSpel {
 										
 		while (spelen == true) {
 			beurt++;
-			System.out.println("Geef code van vier letters in (letters a-f, zonder spaties, x is einde)");
+			System.out.println("Geef code van vier letters in (letters a-f, zonder spaties, q is einde)");
 			String input = scan.nextLine();
 			boolean contains = true;
 			contains = onlyLettersAF(input);												//checken verkeerde letters
 			if (input.equals("x")) {														//einde
 				System.out.println("dit potje is voorbij - opnieuw spelen?");
+				sound.bad();
 				spelen=SpelenVraag();
 				if (spelen==true) {
 					code.CodeMaken();					
@@ -78,12 +79,11 @@ public class mastermindSpel {
 		soundEffects sound = new soundEffects();
 		boolean spelen = true;
 		Scanner scan = new Scanner(System.in);
-		System.out.println("Start spel = s; Stoppen = x");
+		System.out.println("Start spel = s; Stoppen = q");
 		String start = scan.nextLine();
 		while(true) {
-			if(start.equals("x")) {
+			if(start.equals("q")) {
 			System.out.println("einde");
-			sound.bad();
 			spelen = false;
 			return spelen;
 			}
@@ -92,14 +92,8 @@ public class mastermindSpel {
 			return spelen;
 		}
 		scan.close();
+		}
 	}
 }
-	
-	void MastermindcodeMaken() {
-		Mastermindcode code = new Mastermindcode();
-		code.CodeMaken();
-		System.out.println("Mastermindcode gegenereerd");
-	}
-	
-}
+
 			
